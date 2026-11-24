@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NexTech Studio creates bold YouTube thumbnails, gaming graphics and custom logos.">
+  <meta name="theme-color" content="#080e20">
+  <title>NexTech Studio | Digital Design</title>
+  <style>
+    :root {
+      --bg:#070b17; --panel:#101a30; --panel2:#0c1426; --cyan:#48e3ff;
+      --violet:#8a6cff; --text:#f4f7ff; --muted:#a7b4ce; --line:#263653;
+      --radius:20px; --max:1120px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--text); background:
+        radial-gradient(ellipse at 12% 5%,rgba(37,190,255,.13),transparent 32rem),
+        radial-gradient(ellipse at 90% 38%,rgba(138,108,255,.10),transparent 28rem),var(--bg);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+      line-height:1.6;
+    }
+    a { color:inherit; text-decoration:none; }
+    button,input,select,textarea { font:inherit; }
+    .wrap { width:min(var(--max),calc(100% - 40px)); margin:auto; }
+    .topbar { position:sticky; top:0; z-index:10; background:rgba(7,11,23,.86); backdrop-filter:blur(14px); border-bottom:1px solid rgba(72,227,255,.12); }
+    .nav { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:900; letter-spacing:.08em; }
+    .brand-mark { width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--cyan);color:var(--cyan);border-radius:11px;box-shadow:0 0 22px #48e34422;font-weight:900; }
+    .brand small { display:block;color:var(--muted);font-size:9px;letter-spacing:.32em;margin-top:-4px; }
+    .links { display:flex;align-items:center;gap:25px;color:var(--muted);font-size:14px; }
+    .links a:hover,.links a.active { color:var(--cyan); }
+    .menu-btn { display:none;background:none;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 12px; }
+    .btn { display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:12px 18px;border-radius:12px;border:1px solid transparent;background:linear-gradient(100deg,var(--cyan),#91f1ff);color:#06101c;font-weight:850;cursor:pointer;transition:.2s; }
+    .btn:hover { transform:translateY(-2px);box-shadow:0 10px 28px #48e3ff25; }
+    .btn.secondary { color:var(--text);background:transparent;border-color:var(--line); }
+    .btn.secondary:hover { border-color:var(--cyan); }
+    .eyebrow { color:var(--cyan);text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:800; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { font-size:clamp(42px,7vw,76px);line-height:1.02;letter-spacing:-.055em;margin:18px 0; }
+    h2 { font-size:clamp(30px,4vw,46px);line-height:1.12;letter-spacing:-.035em;margin-bottom:12px; }
+    .gradient { background:linear-gradient(100deg,#fff 10%,var(--cyan) 58%,#a99aff);-webkit-background-clip:text;background-clip:text;color:transparent; }
+    .muted { color:var(--muted); }
+    .hero { padding:92px 0 76px;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center; }
+    .hero-copy p { max-width:590px;font-size:17px;color:var(--muted); }
+    .actions { display:flex;flex-wrap:wrap;gap:12px;margin-top:28px; }
+    .hero-note { margin-top:24px;color:var(--muted);font-size:12px; }
+    .hero-art { min-height:390px;position:relative;display:grid;place-items:center; }
+    .orb { width:min(340px,80vw);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;position:relative;background:radial-gradient(circle at 50% 50%,#173c5b 0,#0d1b35 44%,#090f20 68%);border:1px solid #48e3ff66;box-shadow:0 0 70px #48e3ff1b,inset 0 0 45px #48e3ff14; }
+    .orb:before,.orb:after { content:"";position:absolute;inset:22px;border:1px dashed #48e3ff88;border-radius:50%;animation:spin 28s linear infinite; }
+    .orb:after { inset:-15px;border-color:#8a6cff88;animation-direction:reverse;animation-duration:38s; }
+    .n-symbol { font-size:150px;font-weight:950;line-height:1;color:var(--cyan);text-shadow:0 0 28px #48e3ff99;letter-spacing:-.12em;margin-right:15px; }
+    .float-tag { position:absolute;padding:10px 14px;border:1px solid var(--line);background:#101a30eF;border-radius:12px;color:var(--cyan);font-size:12px;font-weight:800;box-shadow:0 12px 35px #0005; }
+    .tag-one { top:14%;right:0; }.tag-two { bottom:14%;left:0; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    section { padding:76px 0;scroll-margin-top:75px; }
+    .section-head { display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:30px; }
+    .section-head p { max-width:480px;margin-bottom:4px; }
+    .grid { display:grid;gap:18px; }
+    .services { grid-template-columns:repeat(3,1fr); }
+    .card { padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,#111d34dd,#0b1325dd); }
+    .card-icon { width:46px;height:46px;display:grid;place-items:center;border-radius:13px;background:#48e3ff14;color:var(--cyan);font-size:22px;margin-bottom:18px; }
+    .card h3 { margin-bottom:7px; }.card p { color:var(--muted);font-size:14px;margin-bottom:0; }
+    .price { color:var(--cyan);font-size:26px;font-weight:900;margin-top:15px; }
+    .portfolio-grid { grid-template-columns:repeat(3,1fr); }
+    .project { overflow:hidden;padding:0; }
+    .artwork { aspect-ratio:16/10;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#10284a,#17133b); }
+    .artwork:before { content:"";position:absolute;width:220px;height:220px;border:1px solid #48e3ff55;border-radius:50%;box-shadow:0 0 50px #48e3ff22; }
+    .artwork span { z-index:1;font-weight:950;font-size:clamp(22px,4vw,38px);letter-spacing:-.04em;text-align:center;text-shadow:0 4px 25px #000; }
+    .artwork.a2 { background:linear-gradient(135deg,#24124c,#101e3d); }.artwork.a3 { background:linear-gradient(135deg,#0d3441,#171a37); }
+    .artwork.a4 { background:linear-gradient(135deg,#341a3c,#11162b); }.artwork.a5 { background:linear-gradient(135deg,#183d5c,#11182e); }.artwork.a6 { background:linear-gradient(135deg,#28204d,#101629); }
+    .project-info { padding:17px 18px; }.project-info strong { display:block; }.project-info small { color:var(--muted); }
+    .filters { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px; }
+    .filter { background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);padding:8px 14px;cursor:pointer; }
+    .filter.selected { background:#48e3ff18;border-color:var(--cyan);color:var(--cyan); }
+    .pricing { grid-template-columns:repeat(3,1fr); }
+    .price-card.featured { border-color:#48e3ff88;box-shadow:0 0 35px #48e3ff12; }
+    .price-card ul { list-style:none;padding:0;margin:18px 0 0;color:var(--muted);font-size:14px; }
+    .price-card li { margin:9px 0; }.price-card li:before { content:"✓";color:var(--cyan);margin-right:9px; }
+    .order-layout { display:grid;grid-template-columns:.8fr 1.2fr;gap:24px;align-items:start; }
+    .contact-panel { background:linear-gradient(145deg,#112442,#0b1325);border:1px solid var(--line);border-radius:var(--radius);padding:27px; }
+    form { display:grid;gap:14px; }
+    label { display:block;font-size:13px;color:#dce6f8;font-weight:700;margin-bottom:6px; }
+    input,select,textarea { width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:11px;background:#080f20;color:var(--text);outline:none; }
+    input:focus,select:focus,textarea:focus { border-color:var(--cyan);box-shadow:0 0 0 3px #48e3ff15; }
+    textarea { min-height:110px;resize:vertical; }
+    .form-hint { color:var(--muted);font-size:12px; }
+    .notice { padding:13px 15px;border-radius:12px;background:#48e3ff0d;border:1px solid #48e3ff33;color:var(--muted);font-size:12px; }
+    footer { padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px; }
+    .footer-row { display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap; }
+    .hidden { display:none!important; }
+    .toast { position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:12px 18px;border-radius:12px;background:#dffbff;color:#06101c;font-weight:750;box-shadow:0 12px 35px #0008;z-index:20; }
+    @media(max-width:850px) { .hero { grid-template-columns:1fr;gap:10px;padding-top:65px; }.hero-art { min-height:330px; }.services,.pricing { grid-template-columns:repeat(2,1fr); }.portfolio-grid { grid-template-columns:repeat(2,1fr); }.order-layout { grid-template-columns:1fr; } }
+    @media(max-width:620px) {
+      .wrap { width:min(100% - 28px,var(--max)); }.menu-btn { display:block; }.links { display:none;position:absolute;top:76px;left:0;right:0;padding:18px 22px 22px;background:#080e20;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:15px; }.links.open { display:flex; }
+      .nav .nav-cta { display:none; }.hero { padding:58px 0 35px; }.hero-art { min-height:285px; }.orb { width:235px; }.n-symbol { font-size:112px; }
+      section { padding:55px 0; }.section-head { display:block; }.services,.pricing,.portfolio-grid { grid-template-columns:1fr; }.card { padding:21px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="NexTech Studio home">
+        <span class="brand-mark">N</span><span>NEXTECH<small>STUDIO</small></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="links" id="navLinks">
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="btn nav-cta" href="#contact">Start a project ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">Independent digital design studio</div>
+        <h1>Make your brand<br><span class="gradient">impossible to ignore.</span></h1>
+        <p>NexTech Studio creates bold YouTube thumbnails and memorable logos for creators, gamers and growing ideas.</p>
+        <div class="actions"><a class="btn" href="#contact">Order a design ↗</a><a class="btn secondary" href="#portfolio">Explore portfolio</a></div>
+        <div class="hero-note">DESIGN. CREATE. DOMINATE. &nbsp;·&nbsp; Launch prices from ₹50</div>
+      </div>
+      <div class="hero-art" aria-label="NexTech futuristic N brand symbol">
+        <div class="orb"><div class="n-symbol">N</div></div>
+        <div class="float-tag tag-one">✦ CREATIVE DESIGN</div><div class="float-tag tag-two">⚡ NEXT-LEVEL VISUALS</div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">What we create</div><h2>Design built to stand out.</h2></div><p class="muted">Clear visuals, strong first impressions and a style that fits your channel or brand.</p></div>
+        <div class="grid services">
+          <article class="card"><div class="card-icon">▣</div><h3>YouTube thumbnails</h3><p>Eye-catching designs made to give your videos a strong first impression.</p><div class="price">From ₹50</div></article>
+          <article class="card"><div class="card-icon">⌘</div><h3>Custom logos</h3><p>Simple, memorable logo concepts for creators, gaming teams and small projects.</p><div class="price">From ₹100</div></article>
+          <article class="card"><div class="card-icon">✧</div><h3>Gaming graphics</h3><p>Posters and channel graphics with bold colours and futuristic energy.</p><div class="price">From ₹50</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">Selected concepts</div><h2>Ideas made visual.</h2></div><p class="muted">These are original-style sample concepts for the NexTech portfolio. Replace them with your finished work as you create it.</p></div>
+        <div class="filters" role="group" aria-label="Filter portfolio">
+          <button class="filter selected" data-filter="all">All work</button><button class="filter" data-filter="thumbnail">Thumbnails</button><button class="filter" data-filter="logo">Logos</button><button class="filter" data-filter="poster">Posters</button>
+        </div>
+        <div class="grid portfolio-grid" id="portfolioGrid">
+          <article class="card project" data-category="thumbnail"><div class="artwork"><span>LEVEL UP<br>YOUR GAME</span></div><div class="project-info"><strong>Gaming thumbnail</strong><small>Thumbnail concept</small></div></article>
+          <article class="card project" data-category="thumbnail"><div class="artwork a2"><span>THE FUTURE<br>IS HERE</span></div><div class="project-info"><strong>Tech review</strong><small>Thumbnail concept</small></div></article>
+          <article class="card project" data-category="logo"><div class="artwork a3"><span>NX<br>ESPORTS</span></div><div class="project-info"><strong>NX esports</strong><small>Gaming logo concept</small></div></article>
+          <article class="card project" data-category="logo"><div class="artwork a4"><span>BYTE<br>WAVE</span></div><div class="project-info"><strong>ByteWave</strong><small>Tech logo concept</small></div></article>
+          <article class="card project" data-category="poster"><div class="artwork a5"><span>POWER<br>YOUR SETUP</span></div><div class="project-info"><strong>Setup showcase</strong><small>Poster concept</small></div></article>
+          <article class="card project" data-category="poster"><div class="artwork a6"><span>CREATE<br>WITHOUT LIMITS</span></div><div class="project-info"><strong>Creator poster</strong><small>Social graphic concept</small></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">Simple launch pricing</div><h2>Start small. Create big.</h2></div><p class="muted">Introductory prices for simple designs. Confirm the exact scope and price before work begins.</p></div>
+        <div class="grid pricing">
+          <article class="card price-card"><div class="eyebrow">Thumbnail</div><h3>Basic</h3><div class="price">₹50</div><ul><li>One thumbnail concept</li><li>One revision</li><li>JPG or PNG delivery</li></ul></article>
+          <article class="card price-card featured"><div class="eyebrow">Logo design</div><h3>Starter logo</h3><div class="price">₹100</div><ul><li>One original logo concept</li><li>One revision</li><li>PNG delivery</li></ul></article>
+          <article class="card price-card"><div class="eyebrow">Bundle</div><h3>Creator pack</h3><div class="price">₹125</div><ul><li>One thumbnail</li><li>One simple logo</li><li>One revision each</li></ul></article>
+        </div>
+        <p class="form-hint" style="margin-top:16px">Complex requests, extra revisions or rush work may need a different quote. No payment is collected on this website.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">Let's work together</div><h2>Tell us what you need.</h2></div><p class="muted">Send a project request through WhatsApp. A guardian-managed business contact number should be configured first.</p></div>
+        <div class="order-layout">
+          <aside class="contact-panel">
+            <div class="card-icon">↗</div><h3>Start a project</h3>
+            <p class="muted">Choose a service, share a few details and send your request. We'll confirm the scope, price and delivery time before starting.</p>
+            <div class="notice">For safety, use a parent/guardian-managed business WhatsApp number. Do not publish your personal number, home address, school or daily routine.</div>
+          </aside>
+          <div class="card">
+            <form id="orderForm">
+              <div><label for="customerName">Your name or creator name</label><input id="customerName" name="customerName" maxlength="50" placeholder="e.g. Alex / Pixel Plays" required></div>
+              <div><label for="service">What do you need?</label><select id="service" name="service" required><option value="">Choose a service</option><option>YouTube thumbnail — ₹50</option><option>Advanced thumbnail — ₹100</option><option>Basic logo — ₹100</option><option>Premium logo — ₹200</option><option>Gaming poster — quote needed</option><option>Other / custom request</option></select></div>
+              <div><label for="details">Project details</label><textarea id="details" name="details" maxlength="700" placeholder="Describe the colours, text, theme and style you want..." required></textarea></div>
+              <div><label for="deadline">Preferred deadline (optional)</label><input id="deadline" name="deadline" type="date"></div>
+              <button class="btn" type="submit">Send request on WhatsApp ↗</button>
+              <div class="form-hint" id="formHint">WhatsApp opens with your message ready to send. Review it before sending.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-row"><div><strong style="color:var(--cyan)">NEXTECH STUDIO</strong><br>DESIGN. CREATE. DOMINATE.</div><div>© <span id="year"></span> NexTech Studio. All rights reserved.<br><span class="form-hint">Independent beginner design studio.</span></div></div></footer>
+  <div class="toast hidden" id="toast" role="status"></div>
+
+  <script>
+    // SETUP: Replace this placeholder with the guardian-approved WhatsApp number.
+    // Use country code + number only: India example format 91XXXXXXXXXX.
+    // Do not include +, spaces, brackets or hyphens.
+    const WHATSAPP_NUMBER = "918639587293";
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.textContent = "☰";
+    }));
+
+    document.querySelectorAll(".filter").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach(b => b.classList.remove("selected"));
+        button.classList.add("selected");
+        const filter = button.dataset.filter;
+        document.querySelectorAll(".project").forEach(card => {
+          card.classList.toggle("hidden", filter !== "all" && card.dataset.category !== filter);
+        });
+      });
+    });
+
+    const form = document.getElementById("orderForm");
+    const toast = document.getElementById("toast");
+    document.getElementById("year").textContent = new Date().getFullYear();
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      if (!/^91\d{10}$/.test(WHATSAPP_NUMBER)) {
+        toast.textContent = "Setup needed: add the guardian-managed WhatsApp number in the website code first.";
+        toast.classList.remove("hidden");
+        setTimeout(() => toast.classList.add("hidden"), 4500);
+        return;
+      }
+      const data = new FormData(form);
+      const message = [
+        "Hello NexTech Studio! I'd like to request a design.",
+        "",
+        "Name: " + data.get("customerName"),
+        "Service: " + data.get("service"),
+        "Details: " + data.get("details"),
+        "Preferred deadline: " + (data.get("deadline") || "Flexible"),
+        "",
+        "Please confirm the final price and delivery time before starting."
+      ].join("\n");
+      const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+  </script>
+</body>
+</html>
